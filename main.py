@@ -1,27 +1,11 @@
-#500
-def findWords( words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    list = []
-    for word in words:
-        is_row1 = True
-        is_row2 = True
-        is_row3 = True
-        #check row 1
-        for char in word:
-            if (char not in 'qwertyuiopQWERTYUIOP'):
-                is_row1 = False
+#557
 
-            if (char not in 'asdfghjklASDFGHJKL'):
-                is_row2 = False
+def reverseWords(s):
+    words = s.split(' ')
+    new_s = ""
+    for w in words:
+        new_s += w[::-1] +" "
+    new_s = new_s[:-1]
+    return new_s
 
-            if (char not in 'zxcvbnmZXCVBNM'):
-                is_row3 = False
-
-        if (is_row1 == True) or (is_row2 == True) or (is_row3 == True):
-            list.append(word)
-    return list
-
-print findWords(["Hello", "Alaska", "Dad", "Peace"])
+print reverseWords("Let's take LeetCode contest")
