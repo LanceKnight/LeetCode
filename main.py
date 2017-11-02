@@ -1,19 +1,15 @@
-#338
-def countBits(num):
+#442
+def findDuplicates(nums):
     """
-    :type num: int
+    :type nums: List[int]
     :rtype: List[int]
     """
-    List = []
-    for i in range(num+1):
-        List.append(bits(i))
-    return List
+    list = []
+    nums.sort()
+    for idx,n in enumerate(nums):
+        if idx !=0:
+            if nums[idx] == nums[idx-1]:
+                list.append(nums[idx])
+    return list
 
-def bits(n):
-    count = 0
-    for c in bin(n)[2:]:
-        count += int(c)
-
-    return count
-
-print countBits(5)
+print findDuplicates([4,3,2,7,8,2,3,1])
