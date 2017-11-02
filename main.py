@@ -1,27 +1,25 @@
-#65
-def isNumber(s):
-    print "\n"
-    num = None
-    try:
-        num = float(s)
-    except ValueError:
-        parts = s.split(".")
-        print parts
-        if(len(parts) == 2):
-            part1 = int(parts[0])
-            part2 = int(parts[1])
-            num = int(part1+part2)
-    return num
+#151
+def reverseWords(s):
+    """
+    :type s: str
+    :rtype: str
+    """
 
 
-print isNumber("45tyv")
-print isNumber("45")
-print isNumber("45I")
-print isNumber("45!3")
-print isNumber("4%")
-print isNumber("0.5")
-print isNumber("2e10")
-print isNumber("0b12")
-print isNumber("-2")
+    words = s.split(" ")
+    #print len(words)
+    words.reverse()
+    output = ""
+    for word in words:
+        #print word
+        if not not word:
+            #print "here"
+            output+= word + " "
+
+    output = output[:-1]
+
+    return output
+
+print reverseWords(" 1 ")
 
 
