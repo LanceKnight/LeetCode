@@ -1,25 +1,19 @@
-#151
-def reverseWords(s):
+#338
+def countBits(num):
     """
-    :type s: str
-    :rtype: str
+    :type num: int
+    :rtype: List[int]
     """
+    List = []
+    for i in range(num+1):
+        List.append(bits(i))
+    return List
 
+def bits(n):
+    count = 0
+    for c in bin(n)[2:]:
+        count += int(c)
 
-    words = s.split(" ")
-    #print len(words)
-    words.reverse()
-    output = ""
-    for word in words:
-        #print word
-        if not not word:
-            #print "here"
-            output+= word + " "
+    return count
 
-    output = output[:-1]
-
-    return output
-
-print reverseWords(" 1 ")
-
-
+print countBits(5)
