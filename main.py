@@ -1,4 +1,4 @@
-#91
+#639
 def numDecodings(s):
     #print "current s", s
     """
@@ -17,20 +17,39 @@ def numDecodings(s):
         count = 0
         return count
     elif lens == 1:
-        num = int(s[i])
-        if num is 0:
-            count = 0
+        num = s[i]
+        if num == "*":
+            count = 9
         else:
-            count = 1
+            num = int(num)
+            if num is 0:
+                count = 0
+            else:
+                count = 1
         return count
     elif lens == 2:
-        num = int(s[0:2])
-        if (0 <= num < 10) or ((num >26) and (num%10 ==0)):
-            count = 0
-        elif (11 <= num <= 26) and (num is not 20):
-            count = 2
-        elif (num == 10) or (num == 20) or ((num >26) and (num%10 !=0)):
-            count = 1
+        num = s[0:2]
+        if ("*" in num):
+            if ((num[0] =="*") and (num[1] != "*") and (num[1] <=6)):#   "*1"
+                count = 11
+            elif ((num[0] =="*") and (num[1] != "*") and (num[1] >6)):#  "*9"
+                count = 10
+            elif ((num[1] =="*") and (num[0] != "*") and (num[0] ==0)): #  "0*"
+                count = 0
+            elif ((num[1] =="*") and (num[0] != "*") and (num[0] ==1)): #  "1*"
+                count = 18
+            elif ((num[1] =="*") and (num[0] != "*") and (num[0] ==2)): #   "2*"
+                count = 15
+            elif ((num[1] =="*") and (num[0] != "*") and (num[0] >2)): #  "3*"
+                count = 9
+        else:
+            num = int(num)
+            if (0 <= num < 10) or ((num >26) and (num%10 ==0)):
+                count = 0
+            elif (11 <= num <= 26) and (num is not 20):
+                count = 2
+            elif (num == 10) or (num == 20) or ((num >26) and (num%10 !=0)):
+                count = 1
         return count
     else:
         while i <lens:
@@ -134,9 +153,10 @@ def numDecodings(s):
     # elif int(s[-2:]) ==0:
     #     return 0
 
-print numDecodings("")
+print numDecodings("9*")
 #print numDecodings("2545844617")
-print numDecodings("4757562545844617494555774581341211511296816786586787755257741178599337186486723247528324612117156948")
+#print numDecodings("4757562545844617494555774581341211511296816786586787755257741178599337186486723247528324612117156948")
+
 
 
 #print numDecodings("12212")
