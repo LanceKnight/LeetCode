@@ -1,142 +1,60 @@
-#91
-def numDecodings(s):
-    #print "current s", s
+#165
+def compareVersion(version1, version2):
     """
-     :type s: str
-     :rtype: int
-     """
+    :type version1: str
+    :type version2: str
+    :rtype: int
+    """
 
 
-    lens = len(s)
-    count = 1
+    v1 = version1.split(".")
+    v2 = version2.split(".")
     i = 0
-    temp1 = 0
-    temp2 = 0
-    temp = 0
-    if lens == 0:
-        count = 0
-        return count
-    elif lens == 1:
-        num = int(s[i])
-        if num is 0:
-            count = 0
+    #print "len(v1):", len(v1), " len(v2):", len(v2)
+    if len(v1) < len(v2):
+        while i < len(v1):
+            head_v1 = int(v1[i])
+            head_v2 = int(v2[i])
+            if head_v1 > head_v2:
+                return 1
+            elif head_v1 < head_v2:
+                return -1
+            elif head_v1 == head_v2:
+                pass
+                i+=1
+        if int(v2[-1]) != 0:
+            return -1
         else:
-            count = 1
-        return count
-    elif lens == 2:
-        num = int(s[0:2])
-        if (0 <= num < 10) or ((num >26) and (num%10 ==0)):
-            count = 0
-        elif (11 <= num <= 26) and (num is not 20):
-            count = 2
-        elif (num == 10) or (num == 20) or ((num >26) and (num%10 !=0)):
-            count = 1
-        return count
-    else:
-        while i <lens:
+            return 0
 
-            if i is 0:
-                num = int(s[i])
-                if num is 0:
-                    temp1 = 0
-                else:
-                    temp1 = 1
-            elif i is 1:
-                num = int(s[(i-1): i+1])
-
-                if (0<= num <10) or ((num >26) and (num%10 ==0)):
-                    temp2 = 0
-                elif (11 <=num <=26) and (num is not 20):
-                    temp2 = 2
-                elif (num == 10) or (num == 20) or ((num >26) and (num%10 !=0)):
-                    temp2 = 1
-            else:
-                num = int(s[i-1: i+1])
-                if (num == 0) or ((num >26) and (num%10 ==0)) :
-                    count = 0
-                    return count
-                elif (0<= num <10) or ((num >26) and (num%10 !=0)) :
-                    #print "here1"
-                    count = temp2
-                    #print "i:", i, " temp1:", temp1, " temp2:", temp2, " count:", count
-                    temp = temp1
-                    temp1 = temp2
-                    temp2 = count
-                    #print "i:", i, " temp1:", temp1, " temp2:", temp2, " count:", count
-                    #print ""
-                elif 11 <= num <= 26 and (num is not 20):
-                    #print "here2"
-                    count = temp1 + temp2
-                    #print "i:", i, " temp1:", temp1, " temp2:", temp2, " count:", count
-                    temp = temp1
-                    temp1 = temp2
-                    temp2 = count
-                    #print "i:", i, " temp1:", temp1, " temp2:", temp2, " count:", count
-                    #print ""
-                elif (num == 10) or (num == 20):
-                    #print "here3"
-                    count = temp1
-                    #print "i:", i, " temp1:", temp1, " temp2:", temp2, " count:", count
-                    temp = temp1
-                    temp1 = temp2
-                    temp2 = count
-                    #print "i:", i, " temp1:", temp1, " temp2:", temp2, " count:", count
-                    #print ""
-
-            i+=1
-
-        return count
+    elif len(v1) > len(v2):
+        while i < len(v2):
+            head_v1 = int(v1[i])
+            head_v2 = int(v2[i])
+            if head_v1 > head_v2:
+                return 1
+            elif head_v1 < head_v2:
+                return -1
+            elif head_v1 == head_v2:
+                pass
+                i+=1
+        if int(v1[-1]) != 0:
+            return 1
+        else:
+            return 0
+    elif len(v1) == len(v2):
+        while i < len(v2):
+            head_v1 = int(v1[i])
+            head_v2 = int(v2[i])
+            if head_v1 > head_v2:
+                return 1
+            elif head_v1 < head_v2:
+                return -1
+            elif head_v1 == head_v2:
+                pass
+                i+=1
+        return 0
 
 
 
-#version 1.0  recursively invoke function
-    # num = len(s)
-    # if (num == 0):
-    #     return 0
-    # if (num == 1):
-    #     if(int(s)!=0):
-    #         return 1
-    #     else:
-    #         return 0
-    # if (num == 2):
-    #     # print "s[-1]", int(s[-1]) is not 0
-    #     if (int(s) <= 26) and (int(s[-2:]) is not 0):
-    #         if int(s[-1]) is not 0:
-    #             if (int(s)<10):
-    #                 return 0
-    #             else:
-    #                 return 2
-    #         else:
-    #             return 1
-    #     elif (int(s) >26):
-    #         if(int(s[-1])is not 0):
-    #             return 1
-    #         else:
-    #             return 0
-    #     elif (int(s) is 0):
-    #         return 0
-    # # print "s[-2:]",s[-2:]
-    # if (int(s[-2:]) <= 26) and (int(s[-2:]) is not 0):
-    #     # print s[:-1]
-    #     if (int(s[-1]) != 0):
-    #         if (int(s[-2:]) >= 10):
-    #             return numDecodings(s[:-1]) + numDecodings(s[:-2])
-    #         else:
-    #             return numDecodings(s[:-1])
-    #     else:
-    #         return numDecodings(s[:-2])
-    # elif int(s[-2:]) >26:
-    #     if int(s[-1]) is not 0:
-    #         return numDecodings(s[:-1])
-    #     else:
-    #         return 0
-    #
-    # elif int(s[-2:]) ==0:
-    #     return 0
-
-print numDecodings("")
-#print numDecodings("2545844617")
-print numDecodings("4757562545844617494555774581341211511296816786586787755257741178599337186486723247528324612117156948")
-
-
-#print numDecodings("12212")
+print compareVersion("1.0.0.1","1.1")
