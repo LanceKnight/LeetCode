@@ -1,5 +1,4 @@
 #137
-
 def singleNumber(nums):
     """
     :type nums: List[int]
