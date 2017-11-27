@@ -1,15 +1,13 @@
-#406
-def reconstructQueue(people):
+#540
+def singleNonDuplicate(nums):
     """
-    :type people: List[List[int]]
-    :rtype: List[List[int]]
+    :type nums: List[int]
+    :rtype: int
     """
-    people.sort(key=lambda (h,k): (-h,k))
-    print people
-    new_list = []
-    for person in people:
-        new_list.insert(person[1],person)
-        print new_list
-    return new_list
+    temp = 0
+    for i in nums:
+        temp ^= i
+    return temp
 
-print reconstructQueue([[9,0],[7,0],[1,9],[3,0],[2,7],[5,3],[6,0],[3,4],[6,2],[5,2]])
+
+print singleNonDuplicate([1,1,2,2,3,3,4,4,8])
